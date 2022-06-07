@@ -10,5 +10,9 @@ export interface IMoreAnimal {
   name: string;
   latinName: string;
   yearOfBirth: number;
+  imageUrl: string;
   longDescription: string;
+  isFed: boolean;
+  lasFed: string;
+  medicine: string;
 }
