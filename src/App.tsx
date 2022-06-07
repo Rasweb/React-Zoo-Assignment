@@ -1,14 +1,23 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+//import { Animal } from "./components/Animal";
 import { Animals } from "./components/Animals";
-
-// API
-// https://animals.azurewebsites.net/api/animals
+import { ErrorPage } from "./components/ErrorPage";
+import { Home } from "./components/Home";
+import { Layout } from "./components/Layout";
 
 function App() {
   return (
-    <div className="App">
-      <Animals></Animals>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}></Route>
+          <Route path="/animals/" element={<Animals />}></Route>
+          {/* <Route path="/animals/:id" element={<Animal />}></Route> */}
+          <Route path="*" element={<ErrorPage />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

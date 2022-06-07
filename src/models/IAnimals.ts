@@ -1,4 +1,4 @@
-export interface IAnimal {
+export interface IAnimals {
   id: number;
   name: string;
   shortDescription: string;

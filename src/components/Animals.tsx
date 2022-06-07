@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { IAnimal } from "../models/IAnimals";
-import { ShowAnimal } from "./ShowAnimal";
+import { IAnimals } from "../models/IAnimals";
+import { Animal } from "./Animal";
 import { StyledUl } from "./styledComponents/StyledUls";
 
 export const Animals = () => {
-  const [animals, setAnimals] = useState<IAnimal[]>([]);
+  const [animals, setAnimals] = useState<IAnimals[]>([]);
 
   useEffect(() => {
     if (animals.length !== 0) return;
     axios
-      .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
+      .get<IAnimals[]>("https://animals.azurewebsites.net/api/animals")
       .then((response) => {
         setAnimals(response.data);
         console.log(response.data);
@@ -25,7 +25,7 @@ export const Animals = () => {
   });
 
   let animalsHtml = animals.map((animal) => {
-    return <ShowAnimal animals={animal} key={animal.id} />;
+    return <Animal animals={animal} key={animal.id} />;
   });
 
   return <StyledUl>{animalsHtml};</StyledUl>;

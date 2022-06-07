@@ -1,11 +1,11 @@
-import { IAnimal } from "../models/IAnimals";
+import { IAnimals } from "../models/IAnimals";
 import { StyledImage } from "./styledComponents/StyledImages";
 
-interface IShowAnimal {
-  animals: IAnimal;
+interface IAnimal {
+  animals: IAnimals;
 }
 
-export const ShowAnimal = (props: IShowAnimal) => {
+export const Animal = (props: IAnimal) => {
   return (
     <li>
       <h2>{props.animals.name}</h2>
