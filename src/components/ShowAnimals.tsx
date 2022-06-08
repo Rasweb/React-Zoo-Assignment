@@ -13,7 +13,7 @@ export const ShowAnimals = (props: IShowAnimals) => {
       <StyledImage src={props.animals.imageUrl} alt={props.animals.name} />
       <p>{props.animals.shortDescription}</p>
       <Link to={`/animals/${props.animals.id}`}>
-        <button>Read More</button>
+        <button>Läs Mer</button>
       </Link>
     </li>
   );

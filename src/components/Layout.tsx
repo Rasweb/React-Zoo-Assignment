@@ -8,10 +8,10 @@ export const Layout = () => {
           <nav>
             <ul>
               <li>
-                <Link to={"/"}>Home</Link>
+                <Link to={"/"}>Hem</Link>
               </li>
               <li>
-                <Link to={"/animals/"}>Animals</Link>
+                <Link to={"/animals/"}>Djur</Link>
               </li>
             </ul>
           </nav>
@@ -19,7 +19,7 @@ export const Layout = () => {
         <main>
           <Outlet></Outlet>
         </main>
-        <footer>My animal assignment</footer>
+        <footer>Min djur inlämningsuppgift</footer>
       </div>
     </>
   );
