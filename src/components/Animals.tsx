@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IAnimals } from "../models/IAnimals";
-import { Animal } from "./Animal";
+import { ShowAnimals } from "./ShowAnimals";
 import { StyledUl } from "./styledComponents/StyledUls";
 
 export const Animals = () => {
@@ -25,7 +25,8 @@ export const Animals = () => {
   });
 
   let animalsHtml = animals.map((animal) => {
-    return <Animal animals={animal} key={animal.id} />;
+    //    return <Animal animals={animal} key={animal.id} />;
+    return <ShowAnimals animals={animal} key={animal.id} />;
   });
 
   return <StyledUl>{animalsHtml};</StyledUl>;
