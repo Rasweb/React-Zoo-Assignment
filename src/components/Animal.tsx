@@ -18,6 +18,8 @@ export const Animal = () => {
   });
   const [fedAnimal, setFedAnimal] = useState(false);
   const [fedTime, setFedTime] = useState(new Date());
+  const [hasBeenFed, setHasBeenFed] = useState(false);
+
   let params = useParams();
 
   useEffect(() => {
@@ -42,6 +44,7 @@ export const Animal = () => {
 
   const feedAnimal = () => {
     setFedAnimal(true);
+    setHasBeenFed(true);
     console.log("Animal is fed");
     console.log(fedTime.toLocaleTimeString());
   };
@@ -65,8 +68,19 @@ export const Animal = () => {
       ) : (
         <p>{animal.name} är inte matad</p>
       )}
-      <p>Senast matad: {animal.lasFed}</p>
-      <button onClick={feedAnimal}>Mata djur</button>
+      {hasBeenFed ? (
+        <p>
+          {animal.name} blev matad klockan:
+          {fedTime.toLocaleTimeString()}
+        </p>
+      ) : (
+        <p>{animal.name} har inte blivit matad förut</p>
+      )}
+      {fedAnimal ? (
+        <button disabled>{animal.name} har blivit matad</button>
+      ) : (
+        <button onClick={feedAnimal}>Mata {animal.name}</button>
+      )}
     </div>
   );
 };
