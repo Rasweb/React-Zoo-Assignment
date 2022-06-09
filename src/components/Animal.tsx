@@ -43,10 +43,21 @@ export const Animal = () => {
   });
 
   const feedAnimal = () => {
+    // 1. Destructures the current animal.
+    // 2. Changes isFed to true.
+    // 3. Sets the new animal to the old.
+    // 4. Sets the hasBeenFed, FedAnimal to true.
+    // logs fedtime and new animal to the console.
+    const updateAnimal = {
+      ...animal,
+      isFed: !animal.isFed,
+    };
+    setAnimal(updateAnimal);
     setFedAnimal(true);
     setHasBeenFed(true);
     console.log("Animal is fed");
     console.log(fedTime.toLocaleTimeString());
+    console.log(updateAnimal);
   };
 
   return (
