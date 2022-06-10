@@ -23,13 +23,17 @@ export const Animal = () => {
   let params = useParams();
 
   useEffect(() => {
-    if (Animal.length !== 0) return;
+    if (!animal) return;
     axios
       .get<IMoreAnimal>(
         "https://animals.azurewebsites.net/api/animals/" + params.id
       )
       .then((data) => {
         setAnimal(data.data);
+        // localStorage.setItem("animal", JSON.stringify(data.data));
+      })
+      .catch((error) => {
+        console.log("bad", error);
       });
   });
 
@@ -52,7 +56,22 @@ export const Animal = () => {
       ...animal,
       isFed: !animal.isFed,
     };
+
+    let fedAnimal = localStorage.getItem("animals");
+    console.log(fedAnimal);
+
+    if (fedAnimal) {
+      const profile = {
+        ...JSON.parse(fedAnimal),
+        ...updateAnimal,
+      };
+      console.log(updateAnimal);
+
+      localStorage.setItem("animals", JSON.stringify(profile));
+    }
+
     setAnimal(updateAnimal);
+
     setFedAnimal(true);
     setHasBeenFed(true);
     console.log("Animal is fed");

@@ -43,5 +43,9 @@ export const Animals = () => {
     return <ShowAnimals animals={animal} key={animal.id} />;
   });
 
-  return <StyledUl>{animalsHtml};</StyledUl>;
+  return (
+    <>
+      <StyledUl>{animalsHtml}</StyledUl>
+    </>
+  );
 };
