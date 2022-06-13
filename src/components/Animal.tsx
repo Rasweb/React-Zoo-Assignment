@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 import { IMoreAnimal } from "../models/IAnimals";
 import { StyledImage } from "./styledComponents/StyledImages";
 
-export const Animal = () => {
+interface IntAnimal {
+  // setAnimals: IAnimals;
+}
+
+export const Animal = (props: IntAnimal) => {
   const [animal, setAnimal] = useState<IMoreAnimal>({
     id: 0,
     name: "",
@@ -13,7 +17,7 @@ export const Animal = () => {
     imageUrl: "",
     longDescription: "",
     isFed: false,
-    lasFed: "",
+    lastFed: "",
     medicine: "",
   });
   const [fedAnimal, setFedAnimal] = useState(false);
@@ -47,36 +51,29 @@ export const Animal = () => {
   });
 
   const feedAnimal = () => {
-    // 1. Destructures the current animal.
-    // 2. Changes isFed to true.
-    // 3. Sets the new animal to the old.
-    // 4. Sets the hasBeenFed, FedAnimal to true.
-    // logs fedtime and new animal to the console.
-    const updateAnimal = {
-      ...animal,
-      isFed: !animal.isFed,
-    };
-
+    // Get animals from localStorage
     let fedAnimal = localStorage.getItem("animals");
-    console.log(fedAnimal);
-
+    // If animals exist
     if (fedAnimal) {
-      const profile = {
-        ...JSON.parse(fedAnimal),
-        ...updateAnimal,
-      };
-      console.log(updateAnimal);
+      // Parse animals from JSON
+      let parsedLi = JSON.parse(fedAnimal);
+      // Loop through animals
+      for (let i = 0; i < parsedLi.length; i++) {
+        // If current animals.id === animal.id
+        if (parsedLi[i].id === animal.id) {
+          // Change boolean to true.
+          parsedLi[i].isFed = !animal.isFed;
+          parsedLi[i].lastFed = fedTime.toLocaleTimeString();
+        }
+      }
 
-      localStorage.setItem("animals", JSON.stringify(profile));
+      console.log(parsedLi);
+      console.log(fedTime.toLocaleTimeString());
+
+      localStorage.setItem("animals", JSON.stringify(parsedLi));
+      setFedAnimal(true);
+      setHasBeenFed(true);
     }
-
-    setAnimal(updateAnimal);
-
-    setFedAnimal(true);
-    setHasBeenFed(true);
-    console.log("Animal is fed");
-    console.log(fedTime.toLocaleTimeString());
-    console.log(updateAnimal);
   };
 
   return (

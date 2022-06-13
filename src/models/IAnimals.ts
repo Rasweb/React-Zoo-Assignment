@@ -3,6 +3,8 @@ export interface IAnimals {
   name: string;
   shortDescription: string;
   imageUrl: string;
+  isFed: boolean;
+  imageError?: "https://via.placeholder.com/150";
 }
 
 export interface IMoreAnimal {
@@ -13,6 +15,6 @@ export interface IMoreAnimal {
   imageUrl: string;
   longDescription: string;
   isFed: boolean;
-  lasFed: string;
+  lastFed: string;
   medicine: string;
 }

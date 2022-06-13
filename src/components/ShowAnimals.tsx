@@ -10,7 +10,12 @@ export const ShowAnimals = (props: IShowAnimals) => {
   return (
     <li>
       <h3>{props.animals.name}</h3>
-      <StyledImage src={props.animals.imageUrl} alt={props.animals.name} />
+      {/* "https://via.placeholder.com/150" */}
+      <StyledImage
+        src={props.animals.imageUrl}
+        alt={props.animals.name}
+        // onError={}
+      />
       <p>{props.animals.shortDescription}</p>
       <Link to={`/animals/${props.animals.id}`}>
         <button>Läs Mer</button>
