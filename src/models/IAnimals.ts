@@ -4,7 +4,7 @@ export interface IAnimals {
   shortDescription: string;
   imageUrl: string;
   isFed: boolean;
-  imageError?: "https://via.placeholder.com/150";
+  // imageError?: "https://via.placeholder.com/150";
 }
 
 export interface IMoreAnimal {

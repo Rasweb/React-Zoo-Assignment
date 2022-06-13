@@ -4,11 +4,7 @@ import { useParams } from "react-router-dom";
 import { IMoreAnimal } from "../models/IAnimals";
 import { StyledImage } from "./styledComponents/StyledImages";
 
-interface IntAnimal {
-  // setAnimals: IAnimals;
-}
-
-export const Animal = (props: IntAnimal) => {
+export const Animal = () => {
   const [animal, setAnimal] = useState<IMoreAnimal>({
     id: 0,
     name: "",
@@ -27,16 +23,22 @@ export const Animal = (props: IntAnimal) => {
   let params = useParams();
 
   useEffect(() => {
+    // Checks if animal exist
     if (!animal) return;
+    // if animal dosen't exist
+    // Fetch data with axios
     axios
       .get<IMoreAnimal>(
         "https://animals.azurewebsites.net/api/animals/" + params.id
       )
+      // If response
       .then((data) => {
+        // Change value of setAnimal to data.data
         setAnimal(data.data);
-        // localStorage.setItem("animal", JSON.stringify(data.data));
       })
+      // If error
       .catch((error) => {
+        // Console.log the error
         console.log("bad", error);
       });
   });
@@ -52,25 +54,24 @@ export const Animal = (props: IntAnimal) => {
 
   const feedAnimal = () => {
     // Get animals from localStorage
-    let fedAnimal = localStorage.getItem("animals");
+    const animalStored = localStorage.getItem("animals");
     // If animals exist
-    if (fedAnimal) {
+    if (animalStored) {
       // Parse animals from JSON
-      let parsedLi = JSON.parse(fedAnimal);
+      const parsedAnimal = JSON.parse(animalStored);
       // Loop through animals
-      for (let i = 0; i < parsedLi.length; i++) {
+      for (let i = 0; i < parsedAnimal.length; i++) {
         // If current animals.id === animal.id
-        if (parsedLi[i].id === animal.id) {
+        if (parsedAnimal[i].id === animal.id) {
           // Change boolean to true.
-          parsedLi[i].isFed = !animal.isFed;
-          parsedLi[i].lastFed = fedTime.toLocaleTimeString();
+          parsedAnimal[i].isFed = !animal.isFed;
+          parsedAnimal[i].lastFed = fedTime.toLocaleTimeString();
         }
       }
-
-      console.log(parsedLi);
+      console.log(parsedAnimal);
       console.log(fedTime.toLocaleTimeString());
 
-      localStorage.setItem("animals", JSON.stringify(parsedLi));
+      localStorage.setItem("animals", JSON.stringify(parsedAnimal));
       setFedAnimal(true);
       setHasBeenFed(true);
     }
