@@ -28,21 +28,21 @@ export const Animal = () => {
 
       // Loop through animal array.
       for (let i = 0; i < parsedSpecific.length; i++) {
-        console.log(parsedSpecific[i].id);
-        console.log(params.id);
+        //  console.log(parsedSpecific[i].id);
+        //  console.log(params.id);
 
         // if animal array id is the same as params.id.
         if (parsedSpecific[i].id == params.id) {
           // setAnimal with current animal.
-          console.log("Good");
+          // console.log("Good");
           setAnimal(parsedSpecific[i]);
-          console.log(parsedSpecific[i], "The curent animal");
+          // console.log(parsedSpecific[i], "The curent animal");
 
           return;
         } else {
-          console.log("Bad");
-          console.log(params.id, "Params");
-          console.log(parsedSpecific[i].id, "Specific ID");
+          // console.log("Bad");
+          // console.log(params.id, "Params");
+          // console.log(parsedSpecific[i].id, "Specific ID");
         }
       }
     }
@@ -59,30 +59,34 @@ export const Animal = () => {
     };
   });
 
-  // useEffect(() => {
-  //   const animalTime = localStorage.getItem("animals");
-  //   if (animalTime) {
-  //     const parseAnimalTime: IMoreAnimal[] = JSON.parse(animalTime);
-  //     console.log(parseAnimalTime);
+  useEffect(() => {
+    const animalTime = localStorage.getItem("animals");
+    if (animalTime) {
+      const parseAnimalTime: IMoreAnimal[] = JSON.parse(animalTime);
+      for (let i = 0; i < parseAnimalTime.length; i++) {
+        if (parseAnimalTime[i].lastFed) {
+          //   console.log(`${parseAnimalTime[i].lastFed} This is lastFed`);
+          // Logs to console
+          // console.log(
+          //   `${currentTime.toLocaleTimeString()} This is currentTime`
+          // );
+          console.log("Good");
+        } else {
+          console.log("Bad");
+        }
 
-  //     for (let i = 0; i < parseAnimalTime.length; i++) {
-  //       if (parseAnimalTime[i].lastFed === animal.lastFed)
-  //         console.log(`${parseAnimalTime[i].lastFed} This is lastFed`);
-  //       // Logs to console
-  //       console.log(`${currentTime.toLocaleTimeString()} This is currentTime`);
+        // let timeLeft = Date.parse(parseAnimalTime[i].lastFed) - Date.now();
+        // let timeLef =
+        //   Date.parse(parseAnimalTime[i].lastFed) -
+        //   Date.parse(currentTime.toLocaleTimeString());
+        // // Logs to console
+        // console.log(fedTime);
 
-  //       let timeLeft = Date.parse(parseAnimalTime[i].lastFed) - Date.now();
-  //       let timeLef =
-  //         Date.parse(parseAnimalTime[i].lastFed) -
-  //         Date.parse(currentTime.toLocaleTimeString());
-  //       // Logs to console
-  //       console.log(fedTime);
-
-  //       console.log(timeLeft, "hes");
-  //       console.log(timeLef);
-  //     }
-  //   }
-  // }, []);
+        // console.log(timeLeft, "hes");
+        // console.log(timeLef);
+      }
+    }
+  }, []);
 
   const feedAnimal = () => {
     // Get animals from localStorage
