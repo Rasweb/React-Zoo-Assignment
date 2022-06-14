@@ -1,5 +1,5 @@
 export interface IAnimals {
-  id: number;
+  id: string;
   name: string;
   shortDescription: string;
   imageUrl: string;
@@ -8,7 +8,7 @@ export interface IAnimals {
 }
 
 export interface IMoreAnimal {
-  id: number;
+  id: string;
   name: string;
   latinName: string;
   yearOfBirth: number;
