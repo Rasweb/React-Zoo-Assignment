@@ -1,4 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
+import { StyledNavList } from "./styledComponents/StyledLists";
+import { StyledNavUl } from "./styledComponents/StyledUls";
 
 export const Layout = () => {
   return (
@@ -6,20 +8,19 @@ export const Layout = () => {
       <div>
         <header>
           <nav>
-            <ul>
-              <li>
+            <StyledNavUl>
+              <StyledNavList>
                 <Link to={"/"}>Hem</Link>
-              </li>
-              <li>
+              </StyledNavList>
+              <StyledNavList>
                 <Link to={"/animals/"}>Djur</Link>
-              </li>
-            </ul>
+              </StyledNavList>
+            </StyledNavUl>
           </nav>
         </header>
         <main>
           <Outlet></Outlet>
         </main>
-        <footer>Min djur inlämningsuppgift</footer>
       </div>
     </>
   );

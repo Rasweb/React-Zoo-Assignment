@@ -1,7 +1,11 @@
 import { ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { IAnimals } from "../models/IAnimals";
+import { StyledMoreButton } from "./styledComponents/StyledButtons";
+import { StyledImgDiv } from "./styledComponents/StyledDivs";
 import { StyledImage } from "./styledComponents/StyledImages";
+import { StyledLists } from "./styledComponents/StyledLists";
+import { StyledParagraphs } from "./styledComponents/StyledParagraphs";
 
 interface IShowAnimals {
   animals: IAnimals;
@@ -9,19 +13,21 @@ interface IShowAnimals {
 
 export const ShowAnimals = (props: IShowAnimals) => {
   return (
-    <li>
-      <h3>{props.animals.name}</h3>
-      <StyledImage
-        src={props.animals.imageUrl}
-        alt={props.animals.name}
-        onError={(e: ChangeEvent<HTMLImageElement>) => {
-          e.target.src = "https://via.placeholder.com/150";
-        }}
-      />
-      <p>{props.animals.shortDescription}</p>
+    <StyledLists>
+      <h2>{props.animals.name}</h2>
+      <StyledImgDiv>
+        <StyledImage
+          src={props.animals.imageUrl}
+          alt={props.animals.name}
+          onError={(e: ChangeEvent<HTMLImageElement>) => {
+            e.target.src = "https://via.placeholder.com/150";
+          }}
+        />
+      </StyledImgDiv>
+      <StyledParagraphs>{props.animals.shortDescription}</StyledParagraphs>
       <Link to={`/animals/${props.animals.id}`}>
-        <button>Läs Mer</button>
+        <StyledMoreButton>Läs Mer</StyledMoreButton>
       </Link>
-    </li>
+    </StyledLists>
   );
 };

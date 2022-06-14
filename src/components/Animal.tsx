@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMoreAnimal } from "../models/IAnimals";
+import { StyledFeedButton } from "./styledComponents/StyledButtons";
+import { StyledAnimalCont, StyledImgDiv } from "./styledComponents/StyledDivs";
 import { StyledImage } from "./styledComponents/StyledImages";
+import {
+  StyledAnimalFeedP,
+  StyledAnimalP,
+} from "./styledComponents/StyledParagraphs";
 
 export const Animal = () => {
   const [animal, setAnimal] = useState<IMoreAnimal>({
@@ -60,6 +66,9 @@ export const Animal = () => {
   });
 
   useEffect(() => {
+    // .lastFed till ett date.object
+    // date.now - lastFed i milisekunder
+    // Sedan konvertera tillbaka tiden.
     const animalTime = localStorage.getItem("animals");
     if (animalTime) {
       const parseAnimalTime: IMoreAnimal[] = JSON.parse(animalTime);
@@ -112,34 +121,48 @@ export const Animal = () => {
   };
 
   return (
-    <div>
-      <h3>
+    <StyledAnimalCont>
+      <h2>
         {animal.name}, {animal.latinName}
-      </h3>
-      <StyledImage src={animal.imageUrl} alt={animal.name}></StyledImage>
-      <p>Ålder: {animal.yearOfBirth}</p>
-      <p>{animal.longDescription}</p>
+      </h2>
+      <StyledImgDiv>
+        <StyledImage
+          src={animal.imageUrl}
+          alt={animal.name}
+          onError={(e: ChangeEvent<HTMLImageElement>) => {
+            e.target.src = "https://via.placeholder.com/150";
+          }}
+        ></StyledImage>
+      </StyledImgDiv>
+      <StyledAnimalP>Ålder: {animal.yearOfBirth}</StyledAnimalP>
+      <StyledAnimalP>{animal.longDescription}</StyledAnimalP>
 
       {animal.medicine === "inga" ? (
-        <p>Ingen medicine</p>
+        <StyledAnimalP>Ingen medicine</StyledAnimalP>
       ) : (
-        <p>medicine: {animal.medicine}</p>
+        <StyledAnimalP>medicine: {animal.medicine}</StyledAnimalP>
       )}
       {hasBeenFed || animal.isFed ? (
         <div>
-          <p>{animal.name} är matad</p>
-          <p>
+          <StyledAnimalFeedP>{animal.name} är matad</StyledAnimalFeedP>
+          <StyledAnimalFeedP>
             {animal.name} blev matad klockan: {animal.lastFed}
-          </p>
-          <button disabled>{animal.name} har blivit matad</button>
+          </StyledAnimalFeedP>
+          <StyledFeedButton disabled>
+            {animal.name} har blivit matad
+          </StyledFeedButton>
         </div>
       ) : (
         <div>
-          <p>{animal.name} är inte matad</p>
-          <p>{animal.name} har inte blivit matad förut</p>
-          <button onClick={feedAnimal}>Mata {animal.name}</button>
+          <StyledAnimalFeedP>{animal.name} är inte matad</StyledAnimalFeedP>
+          <StyledAnimalFeedP>
+            {animal.name} har inte blivit matad förut
+          </StyledAnimalFeedP>
+          <StyledFeedButton onClick={feedAnimal}>
+            Mata {animal.name}
+          </StyledFeedButton>
         </div>
       )}
-    </div>
+    </StyledAnimalCont>
   );
 };

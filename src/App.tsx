@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Animal } from "./components/Animal";
 import { Animals } from "./components/Animals";
 import { ErrorPage } from "./components/ErrorPage";
 import { Home } from "./components/Home";
 import { Layout } from "./components/Layout";
+import "./App.css";
 
 function App() {
   return (
