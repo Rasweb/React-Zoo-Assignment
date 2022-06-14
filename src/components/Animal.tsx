@@ -18,7 +18,6 @@ export const Animal = () => {
   const [fedTime, setFedTime] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(new Date());
   const [hasBeenFed, setHasBeenFed] = useState(false);
-  const [trueAnimal, setTrueAnimal] = useState(false);
 
   let params = useParams();
 
@@ -38,7 +37,7 @@ export const Animal = () => {
           console.log("Good");
           setAnimal(parsedSpecific[i]);
           console.log(parsedSpecific[i], "The curent animal");
-          setTrueAnimal(true);
+
           return;
         } else {
           console.log("Bad");
