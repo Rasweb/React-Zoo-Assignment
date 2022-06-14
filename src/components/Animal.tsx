@@ -31,24 +31,15 @@ export const Animal = () => {
     const specificAnimal = localStorage.getItem("animals");
     if (specificAnimal) {
       const parsedSpecific: IMoreAnimal[] = JSON.parse(specificAnimal);
-
       // Loop through animal array.
       for (let i = 0; i < parsedSpecific.length; i++) {
-        //  console.log(parsedSpecific[i].id);
-        //  console.log(params.id);
-
         // if animal array id is the same as params.id.
         if (parsedSpecific[i].id == params.id) {
-          // setAnimal with current animal.
-          // console.log("Good");
+          console.log("Good");
           setAnimal(parsedSpecific[i]);
-          // console.log(parsedSpecific[i], "The curent animal");
-
           return;
         } else {
-          // console.log("Bad");
-          // console.log(params.id, "Params");
-          // console.log(parsedSpecific[i].id, "Specific ID");
+          console.log("Bad");
         }
       }
     }
@@ -74,25 +65,18 @@ export const Animal = () => {
       const parseAnimalTime: IMoreAnimal[] = JSON.parse(animalTime);
       for (let i = 0; i < parseAnimalTime.length; i++) {
         if (parseAnimalTime[i].lastFed) {
-          //   console.log(`${parseAnimalTime[i].lastFed} This is lastFed`);
-          // Logs to console
-          // console.log(
-          //   `${currentTime.toLocaleTimeString()} This is currentTime`
-          // );
+          console.log(parseAnimalTime[i].lastFed, "LastFed");
+          console.log(currentTime.toLocaleTimeString(), "CurrentTime");
+
+          // const d1 = new Date(parseAnimalTime[i].lastFed);
+          // const d2 = new Date(currentTime.toLocaleTimeString());
+          // console.log(d1, "LocalStorage value");
+          // console.log(d2, "CurrentTime value");
+
           console.log("Good");
         } else {
           console.log("Bad");
         }
-
-        // let timeLeft = Date.parse(parseAnimalTime[i].lastFed) - Date.now();
-        // let timeLef =
-        //   Date.parse(parseAnimalTime[i].lastFed) -
-        //   Date.parse(currentTime.toLocaleTimeString());
-        // // Logs to console
-        // console.log(fedTime);
-
-        // console.log(timeLeft, "hes");
-        // console.log(timeLef);
       }
     }
   }, []);
@@ -112,6 +96,8 @@ export const Animal = () => {
           parsedAnimal[i].isFed = !animal.isFed;
           parsedAnimal[i].lastFed = fedTime.toLocaleTimeString();
           localStorage.setItem("animals", JSON.stringify(parsedAnimal));
+
+          setAnimal(parsedAnimal[i]);
           setHasBeenFed(true);
         }
       }
