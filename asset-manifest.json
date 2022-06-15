@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-Zoo-Assignment/static/css/main.55da721f.css",
+    "main.js": "/React-Zoo-Assignment/static/js/main.f03c3d75.js",
+    "static/js/787.2aa266be.chunk.js": "/React-Zoo-Assignment/static/js/787.2aa266be.chunk.js",
+    "index.html": "/React-Zoo-Assignment/index.html",
+    "main.55da721f.css.map": "/React-Zoo-Assignment/static/css/main.55da721f.css.map",
+    "main.f03c3d75.js.map": "/React-Zoo-Assignment/static/js/main.f03c3d75.js.map",
+    "787.2aa266be.chunk.js.map": "/React-Zoo-Assignment/static/js/787.2aa266be.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55da721f.css",
+    "static/js/main.f03c3d75.js"
+  ]
+}
