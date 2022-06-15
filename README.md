@@ -11,8 +11,7 @@
 
 ### react-zoo
 
-![Live project](https://rasweb.github.io/React-Zoo-Assignment/)
-
+Live Project - https://rasweb.github.io/React-Zoo-Assignment/
 Welcome to my React Zoo assignment. This was created upon the request of Medieinstitutet Stockholm, Sweden.
 The requirements for this assignment is to work with React typescript and can be found in this file ![Instructions, Zoo.pdf](./public/Zoo.pdf).
 The instructions and all of the textual data on this site are in swedish. But the code is mostly in english.
