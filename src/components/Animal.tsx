@@ -7,6 +7,7 @@ import { StyledImage } from "./styledComponents/StyledImages";
 import {
   StyledAnimalFeedP,
   StyledAnimalP,
+  StyledFeedTime,
 } from "./styledComponents/StyledParagraphs";
 
 export const Animal = () => {
@@ -21,9 +22,8 @@ export const Animal = () => {
     lastFed: "",
     medicine: "",
   });
-  const [fedTime, setFedTime] = useState(new Date());
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [hasBeenFed, setHasBeenFed] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   let params = useParams();
 
@@ -46,36 +46,36 @@ export const Animal = () => {
   }, []);
 
   useEffect(() => {
-    // Check time every 1 second.
-    const currentDate = setInterval(() => setCurrentTime(new Date()), 10000);
-    let timer = setInterval(() => setFedTime(new Date()), 1000);
-    // To restart the time process and avoid memory leaks
-    return function cleanup() {
-      clearInterval(timer);
-      clearInterval(currentDate);
-    };
-  });
-
-  useEffect(() => {
-    // .lastFed till ett date.object
-    // date.now - lastFed i milisekunder
-    // Sedan konvertera tillbaka tiden.
     const animalTime = localStorage.getItem("animals");
     if (animalTime) {
       const parseAnimalTime: IMoreAnimal[] = JSON.parse(animalTime);
       for (let i = 0; i < parseAnimalTime.length; i++) {
-        if (parseAnimalTime[i].lastFed) {
-          console.log(parseAnimalTime[i].lastFed, "LastFed");
-          console.log(currentTime.toLocaleTimeString(), "CurrentTime");
+        if (parseAnimalTime[i].isFed) {
+          const now = new Date();
+          const timeFeed = parseInt(parseAnimalTime[i].lastFed);
+          const timeNow = parseInt(now.toLocaleTimeString());
 
-          // const d1 = new Date(parseAnimalTime[i].lastFed);
-          // const d2 = new Date(currentTime.toLocaleTimeString());
-          // console.log(d1, "LocalStorage value");
-          // console.log(d2, "CurrentTime value");
+          const result = timeNow - timeFeed;
 
-          console.log("Good");
-        } else {
-          console.log("Bad");
+          if (result >= 1) {
+            console.log("1 hours");
+          }
+          if (result >= 2) {
+            console.log("2 hours");
+          }
+          if (result >= 3) {
+            console.log("3 hours");
+            parseAnimalTime[i].isFed = false;
+            parseAnimalTime[i].lastFed = "";
+            localStorage.setItem("animals", JSON.stringify(parseAnimalTime));
+
+            setAnimal(parseAnimalTime[i]);
+            setHasBeenFed(false);
+          }
+          if (result >= 4) {
+            console.log("4 hours");
+            setShowModal(true);
+          }
         }
       }
     }
@@ -87,27 +87,27 @@ export const Animal = () => {
     // If animals exist
     if (animalStored) {
       // Parse animals from JSON
-      const parsedAnimal = JSON.parse(animalStored);
+      const parsedAnimal: IMoreAnimal[] = JSON.parse(animalStored);
       // Loop through animals
       for (let i = 0; i < parsedAnimal.length; i++) {
+        const daDate = new Date();
         // If current animals.id === animal.id
         if (parsedAnimal[i].id === animal.id) {
           // Change boolean to true.
           parsedAnimal[i].isFed = !animal.isFed;
-          parsedAnimal[i].lastFed = fedTime.toLocaleTimeString();
+          parsedAnimal[i].lastFed = daDate.toLocaleTimeString();
           localStorage.setItem("animals", JSON.stringify(parsedAnimal));
 
           setAnimal(parsedAnimal[i]);
           setHasBeenFed(true);
         }
       }
-      console.log(parsedAnimal);
-      console.log(fedTime.toLocaleTimeString());
     }
   };
 
   return (
     <StyledAnimalCont>
+      {showModal && <StyledFeedTime>{animal.name} är hungrig!</StyledFeedTime>}
       <h2>
         {animal.name}, {animal.latinName}
       </h2>

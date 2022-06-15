@@ -21,3 +21,8 @@ export const StyledAnimalFeedP = styled.p`
   text-align: center;
   margin-bottom: 1%;
 `;
+
+export const StyledFeedTime = styled.p`
+  text-align: center;
+  text-decoration: underline;
+`;
