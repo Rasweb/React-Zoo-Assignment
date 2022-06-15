@@ -12,7 +12,7 @@
 ### react-zoo
 
 Welcome to my React Zoo assignment. This was created upon the request of Medieinstitutet Stockholm, Sweden.
-The requirements for this assignment is to work with React typescript and can be found in this file ![Instructions](./public/Zoo.pdf).
+The requirements for this assignment is to work with React typescript and can be found in this file ![Instructions, Zoo.pdf](./public/Zoo.pdf).
 The instructions and all of the textual data on this site are in swedish. But the code is mostly in english.
 
 Fulfilled requirements:
@@ -26,8 +26,12 @@ Fulfilled requirements:
 
 ## Project setup
 
-To see this project in the browser find this file ![App](./src/App.tsx)
-In the App file change <HashRouter> to <BrowserRouter>
+To see this project in the browser find this file ![App.tsx](./src/App.tsx)
+In the App file change
+
+```
+<HashRouter> to <BrowserRouter>
+```
 
 ```
 npm install
