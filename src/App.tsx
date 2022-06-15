@@ -8,8 +8,8 @@ import "./App.css";
 
 function App() {
   return (
-    // <BrowserRouter>
-    <HashRouter>
+    // <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />}></Route>
@@ -18,8 +18,8 @@ function App() {
           <Route path="*" element={<ErrorPage />}></Route>
         </Route>
       </Routes>
-    </HashRouter>
-    // {/* </BrowserRouter> */}
+    </BrowserRouter>
+    // {/* </HashRouter> */}
   );
 }
 
