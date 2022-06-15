@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { Animal } from "./components/Animal";
 import { Animals } from "./components/Animals";
 import { ErrorPage } from "./components/ErrorPage";
@@ -8,6 +8,7 @@ import "./App.css";
 
 function App() {
   return (
+    // <HashRouter>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -18,6 +19,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    // {/* </HashRouter> */}
   );
 }
 

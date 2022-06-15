@@ -56,15 +56,8 @@ export const Animal = () => {
           const timeNow = parseInt(now.toLocaleTimeString());
 
           const result = timeNow - timeFeed;
-
-          if (result >= 1) {
-            console.log("1 hours");
-          }
-          if (result >= 2) {
-            console.log("2 hours");
-          }
           if (result >= 3) {
-            console.log("3 hours");
+            console.log('"3" hours');
             parseAnimalTime[i].isFed = false;
             parseAnimalTime[i].lastFed = "";
             localStorage.setItem("animals", JSON.stringify(parseAnimalTime));
@@ -73,7 +66,7 @@ export const Animal = () => {
             setHasBeenFed(false);
           }
           if (result >= 4) {
-            console.log("4 hours");
+            console.log('"4" hours');
             setShowModal(true);
           }
         }
